@@ -23,7 +23,8 @@ updateAlpha <- function(y,mu,sig2){
   sig.post <- sig2/sum(y2^2)
   
   I <- 2
-  while(I > 0){
+  while(I > 0){ #This truncates the support of alpha in the interval (-1,1),
+                #because we are trying to model a stationary series.
     alpha <- rnorm(1,m.post,sqrt(sig.post))
     if(alpha >-1 & alpha < 1){
       I <- 0
